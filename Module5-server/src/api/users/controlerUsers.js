@@ -1,8 +1,12 @@
+const userService = require("../../service/userService");
+
 module.exports = {
   getAllUsers: (req, res) => {
-    res.send("<h1>users from routes!</h1>");
+    const users = userService.getAllUsers();
+    res.send(users);
   },
   createNewUser: (req, res) => {
-    res.send("Good users");
+    const newUsers = userService.createNewUser();
+    res.send(newUsers);
   },
 };
