@@ -2,15 +2,15 @@ const express = require("express");
 
 const app = express();
 
-const api = require("./api/routes")
+const api = require("./api/routes");
+
+const errorHandler = require("./infrastucture/errorHandler");
 
 const PORT = 8090;
 
-app.use("/api", api)
+app.use("/api", api);
 
-// app.get("/", (req, res) => {
-//   res.send("Hello from express");
-// });
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server starded on port ${PORT}`);

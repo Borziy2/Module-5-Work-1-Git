@@ -1,12 +1,20 @@
 const articleService = require("../../service/articleService");
 
 module.exports = {
-  getAllArticles: (req, res) => {
-    const article = articleService.getAllArticles();
-    res.send(article);
+  getAllArticles: (req, res, next) => {
+    try {
+      const article = articleService.getAllArticles();
+      res.send(article);
+    } catch (error){
+      next(error);
+    }
   },
-  creatNewArticle: (req, res) => {
-    const newAticle = articleService.creatNewArticle();
-    res.send(newAticle);
+  creatNewArticle: (req, res, next) => {
+    try {
+      const newAticle = articleService.creatNewArticle();
+      res.send(newAticle);
+    } catch(error) {
+      next(error);
+    }
   },
 };
