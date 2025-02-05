@@ -6,6 +6,8 @@ const api = require("./api/routes");
 
 const errorHandler = require("./infrastucture/errorHandler");
 
+app.use(express.json());
+
 const PORT = 8090;
 
 app.use("/api", api);
