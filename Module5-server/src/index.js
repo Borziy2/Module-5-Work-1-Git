@@ -2,6 +2,10 @@ const express = require("express");
 
 const app = express();
 
+const database = require("./database");
+
+database();
+
 const api = require("./api/routes");
 
 const errorHandler = require("./infrastucture/errorHandler");
