@@ -8,12 +8,15 @@ module.exports = {
   },
 
   findAllArticle: async () => {
-    const articles = Article.find({});
+    const articles = await Article.find({ isDeleted: { $ne: true } });
     return articles;
   },
 
   findArticle: async (articleId) => {
-    const article = await Article.findId(articleId);
+    const article = await Article.findOne({
+      _id: articleId,
+      isDeleted: { $ne: true },
+    });
     return article;
   },
 
@@ -30,6 +33,6 @@ module.exports = {
   },
 
   removeArticleForse: async (articleId) => {
-    await Article.findByIdAndRemove(articleId);
+    await Article.findByIdAndDelete(articleId);
   },
 };

@@ -1,12 +1,47 @@
 const userService = require("../../service/userService");
 
 module.exports = {
-  getAllUsers: (req, res) => {
-    const users = userService.getAllUsers();
-    res.send(users);
+  getAllUsers: async (req, res, next) => {
+    try {
+      const Users = await userService.getAllUsers();
+      res.send(Users);
+    } catch (error) {
+      next(error);
+    }
   },
-  createNewUser: (req, res) => {
-    const newUsers = userService.createNewUser();
-    res.send(newUsers);
+
+  getUser: async (req, res) => {
+    const userId = req.params.id;
+    const user = await userService.findUser(userId);
+    res.send(user);
+  },
+  creatNewUser: async (req, res, next) => {
+    try {
+      const user = req.user;
+      const data = req.body;
+
+      const User = await userService.creatNewUser(user, data);
+      res.send(User);
+    } catch (error) {
+      next(error);
+    }
+  },
+  updateUser: async (req, res) => {
+    const userId = req.params.id;
+    const data = req.body;
+    const updateUser = await userService.updateUser(userId, data);
+    res.send(updateUser);
+  },
+
+  removeUser: async (req, res) => {
+    const userId = req.params.id;
+    await userService.removeUser(userId);
+    res.send("User deleted!");
+  },
+
+  removeUserForce: async (req, res) => {
+    const userId = req.params.id;
+    await userService.removeUserForce(userId);
+    res.send("User deleted!");
   },
 };

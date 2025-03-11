@@ -1,19 +1,22 @@
 const { User } = require("../database/models");
 
 module.exports = {
-  createArticle: async (article) => {
-    const newUser = new User(article);
+  createUser: async (user) => {
+    const newUser = new User(user);
     const result = await newUser.save();
     return result;
   },
 
   findAllUser: async () => {
-    const users = User.find({});
+    const users = User.find({ isDeleted: { $ne: true } });
     return users;
   },
 
   findUser: async (userId) => {
-    const user = await User.findId(userId); //By
+    const user = await User.findOne({
+      _id: articleId,
+      isDeleted: { $ne: true },
+    });
     return user;
   },
 
@@ -30,6 +33,6 @@ module.exports = {
   },
 
   removeUserForse: async (userId) => {
-    await User.findByIdAndRemove(userId);
+    await User.findByIdAndDelete(userId);
   },
 };
