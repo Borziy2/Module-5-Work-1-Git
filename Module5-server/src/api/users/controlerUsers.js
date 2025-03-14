@@ -15,7 +15,7 @@ module.exports = {
     const user = await userService.findUser(userId);
     res.send(user);
   },
-  creatNewUser: async (req, res, next) => {
+  registerUser: async (req, res, next) => {
     try {
       const user = req.user;
       const data = req.body;

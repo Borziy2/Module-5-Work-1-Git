@@ -3,7 +3,7 @@ const {
   getAllUsers,
   createNewUser,
   getUser,
-  creatNewUser,
+  registerUser,
   updateUser,
   removeUser,
   removeUserForce,
@@ -15,7 +15,7 @@ router.get("/", getAllUsers);
 
 router.get("/:id", getUser);
 
-router.post("/", creatNewUser);
+router.post("/", registerUser);
 
 router.put("/:id", updateUser);
 

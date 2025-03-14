@@ -1,4 +1,6 @@
 const usersRepository = require("../repository/usersRepository");
+const ExistingEntityError = require("../infrastucture/errors/ExistingEntityError ")
+
 module.exports = {
   getAllUsers: async () => {
     const Users = await usersRepository.findAllUser();
@@ -9,6 +11,10 @@ module.exports = {
     return User;
   },
   creatNewUser: async (user, userData) => {
+    const existingUser = await usersRepository.findUserByEmail(userData.email);
+    if (existingUser) {
+      throw new ExistingEntityError("User with email already exist");
+    }
     const newUser = await usersRepository.createUser(userData);
     return newUser;
   },
