@@ -26,6 +26,17 @@ module.exports = {
       next(error);
     }
   },
+  loginUser: async (req, res, next) => {
+    try {
+      const data = req.body;
+      const user = (await userService.loginUser(data));
+      res.send(user);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+
   updateUser: async (req, res) => {
     const userId = req.params.id;
     const data = req.body;

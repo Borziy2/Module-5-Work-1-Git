@@ -7,6 +7,7 @@ const {
   updateUser,
   removeUser,
   removeUserForce,
+  loginUser,
 } = require("./controlerUsers");
 
 const router = Router();
@@ -16,6 +17,8 @@ router.get("/", getAllUsers);
 router.get("/:id", getUser);
 
 router.post("/", registerUser);
+
+router.post("/login", loginUser);
 
 router.put("/:id", updateUser);
 
