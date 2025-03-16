@@ -16,7 +16,7 @@ module.exports = {
     const user = await User.findOne({
       _id: userId,
       isDeleted: { $ne: true },
-    });
+    }).select("-password");
     return user;
   },
 

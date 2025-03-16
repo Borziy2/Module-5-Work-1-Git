@@ -11,10 +11,13 @@ database();
 const api = require("./api/routes");
 
 const errorHandler = require("./infrastucture/errorHandler");
+const { auth } = require("./middlewares/auth");
 
 app.use(express.json());
 
 const PORT = 8090;
+
+app.use(auth);
 
 app.use("/api", api);
 
