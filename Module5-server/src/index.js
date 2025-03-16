@@ -17,12 +17,11 @@ app.use(express.json());
 
 const PORT = 8090;
 
-app.use(auth);
-
 app.use("/api", api);
 
 app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server starded on port ${PORT}`);
+  app.use(auth);
 });
