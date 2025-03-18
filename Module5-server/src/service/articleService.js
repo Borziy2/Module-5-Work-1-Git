@@ -11,6 +11,12 @@ module.exports = {
     const article = await articlesRepository.findArticle(articleId);
     return article;
   },
+
+  getMyArticles: async (userId) => {
+    const usersArticles = await articlesRepository.findUsersArticles(userId);
+    return usersArticles;
+  },
+
   creatNewArticle: async (articleData) => {
     const newArticle = await articlesRepository.createArticle(articleData);
     return newArticle;
