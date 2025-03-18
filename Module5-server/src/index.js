@@ -15,7 +15,7 @@ const { auth } = require("./middlewares/auth");
 
 app.use(express.json());
 
-const PORT = 8080;
+const PORT = 8090;
 app.use(auth);
 
 app.use("/api", api);
