@@ -1,18 +1,21 @@
 const { Router } = require("express");
 const {
   getAllUsers,
-  createNewUser,
   getUser,
   registerUser,
   updateUser,
   removeUser,
   removeUserForce,
   loginUser,
+  getMe,
 } = require("./controlerUsers");
+const { protected } = require("../../middlewares/auth");
 
 const router = Router();
 
 router.get("/", getAllUsers);
+
+router.get("/me", getMe);
 
 router.get("/:id", getUser);
 

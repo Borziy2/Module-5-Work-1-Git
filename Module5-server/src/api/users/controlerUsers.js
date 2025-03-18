@@ -10,6 +10,16 @@ module.exports = {
     }
   },
 
+  getMe: async (req, res, next) => {
+    try {
+      const user = req.user;
+      const me = await userService.findUserWithArticles(user._id);
+      res.send(me);
+    } catch (error) {
+      next(error);
+    }
+  },
+
   getUser: async (req, res) => {
     const userId = req.params.id;
     const user = await userService.findUser(userId);
@@ -29,13 +39,12 @@ module.exports = {
   loginUser: async (req, res, next) => {
     try {
       const data = req.body;
-      const user = (await userService.loginUser(data));
+      const user = await userService.loginUser(data);
       res.send(user);
     } catch (error) {
       next(error);
     }
   },
-
 
   updateUser: async (req, res) => {
     const userId = req.params.id;

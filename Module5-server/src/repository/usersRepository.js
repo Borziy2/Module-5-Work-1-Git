@@ -20,6 +20,16 @@ module.exports = {
     return user;
   },
 
+  findUserWithArticles: async (userId) => {
+    const user = await User.findOne({
+      _id: userId,
+      isDeleted: { $ne: true },
+    })
+      .select("-password")
+      .populate("articles");
+    return user;
+  },
+
   findUserByEmail: async (email) => {
     const user = await User.findOne({
       email: email,

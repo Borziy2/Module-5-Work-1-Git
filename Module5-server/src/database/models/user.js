@@ -20,8 +20,15 @@ const userSchema = mongoose.Schema(
   },
   {
     timestemps: true,
+    toJSON: { virtuals: true },
   }
 );
+
+userSchema.virtual("articles", {
+  ref: "article",
+  foreignField: "user",
+  localField: "_id",
+});
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {

@@ -10,12 +10,10 @@ const {
 } = require("./controlerArticle");
 
 const { protected } = require("../../middlewares/auth");
-
 const router = Router();
-
 router.get("/", getAllArticles);
 
-router.get("/my", getMyArticles);
+router.get("/my", protected, getMyArticles);
 
 router.get("/:id", getArticle);
 
@@ -25,6 +23,6 @@ router.put("/:id", protected, updateArticle);
 
 router.delete("/:id", protected, removeArticle);
 
-router.delete("/force/:id", protected, removeArticleForce);
+router.delete("/force/:id", removeArticleForce);
 
 module.exports = router;
