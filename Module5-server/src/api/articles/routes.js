@@ -6,6 +6,7 @@ const {
   updateArticle,
   removeArticle,
   removeArticleForce,
+  getMyArticles,
 } = require("./controlerArticle");
 
 const { protected } = require("../../middlewares/auth");
@@ -13,6 +14,8 @@ const { protected } = require("../../middlewares/auth");
 const router = Router();
 
 router.get("/", getAllArticles);
+
+router.get("/my", getMyArticles);
 
 router.get("/:id", getArticle);
 

@@ -20,6 +20,23 @@ module.exports = {
     return article;
   },
 
+  findUsersArticles: async (userId) => {
+    const articles = await Article.find({
+      user: userId,
+      isDeleted: { $ne: true },
+    });
+    return articles;
+  },
+
+  findUserArticle: async (articleId, userId) => {
+    const article = await Article.findOne({
+      _id: articleId,
+      user: userId,
+      isDeleted: { $ne: true },
+    });
+    return article;
+  },
+
   updateArticle: async (articleId, data) => {
     const updateArticle = await Article.findByIdAndUpdate(articleId, data, {
       new: true,

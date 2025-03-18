@@ -7,7 +7,7 @@ const errorHandler = (err, req, res, next) => {
 
   switch (true) {
     case err instanceof NotImplementedError:
-      res.sendStatus(404);
+      res.status(404).send(err.message);
 
       break;
     case err instanceof ExistingEntityError:
